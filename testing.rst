@@ -98,3 +98,50 @@ A common and high maintainable way to do this is giving a look to the official p
 Integration Testing
 *******************
 **TO DO :) **
+
+
+**************
+Practical Tips
+**************
+Here are some tips for ``py.test`` and in general, ``inspire-next`` newcomers:
+
+- | Running **specific** test methods with py.test
+
+  | For testing a specific function, e.g. ``new_ticket_context``, ``py.test``
+  | will detect all related tests which follow the expression ``my_function_name`` and run them.
+  
+  ::
+    
+    # When using Docker
+    dco run --rm web py.test tests/unit -k new_ticket_context
+
+    # Otherwise
+    py.test tests/unit -k new_ticket_context
+
+  
+  | More on `selecting tests <https://docs.pytest.org/en/latest/usage.html#specifying-tests-selecting-tests>`_ in ``py.test`` testing framework.
+
+- | *[Dockerl related]* Running specific kind of tests (*i.e. unit/integration/acceptance*) with the option to load a debugger on failure
+
+  | Open a shell (``bash``) into the container whose tests you need to run. 
+  | If for example, you need to run ``acceptance`` tests, then:
+
+  ::
+
+    docker-compose -f docker-compose.test.yml run --rm acceptance bash
+
+  From the container shell, you can run:
+
+  ::
+
+    py.test --driver Remote --host selenium --port 4444 --capability browserName firefox --html=selenium-report.html tests/acceptance
+
+  | (To find the ``py.test`` invocation that is being used for each type of tests: ``grep acceptance docker-compose.tests.yml``.)
+ 
+  | To have the option of opening a debugger (e.g. ipdb) on error (or if you've set a trace point), then add ``--ipdb``, as an option in ``py.test`` invocation, like so:
+
+  ::
+
+    py.test --ipdb --driver Remote --host selenium --port 4444 --capability browserName firefox --html=selenium-report.html tests/acceptance
+
+
