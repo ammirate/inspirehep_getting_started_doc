@@ -49,6 +49,7 @@ When the container is up you can run the following `psql` command line:
     (virtualenv)[inspirehep_web]$ psql -h inspirenext_database_1 inspirehep inspirehep
     Password for user inspirehep: dbpass123
 
+
 .. code-block:: sql
 
     psql (9.2.18, server 9.4.5)

@@ -12,7 +12,7 @@ Back-end
 Debugging
 ^^^^^^^^^
 - When developing for code that runs on the worker node and you need to debug it, you need to use 
-  `remote-pdb` package as described by `Riccardo Candido <https://github.com/rikirenz>`_, `here <https://github.com/inspirehep/inspire-next/pull/1946#discussion_r104183272>`_.
+  `remote-pdb` package as described `here <https://github.com/inspirehep/inspire-next/pull/1946#discussion_r104183272>`_.
 
 
 Front-end
