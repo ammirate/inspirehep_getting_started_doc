@@ -48,6 +48,10 @@ When the container is up you can run the following `psql` command line:
 
     (virtualenv)[inspirehep_web]$ psql -h inspirenext_database_1 inspirehep inspirehep
     Password for user inspirehep: dbpass123
+
+
+.. code-block:: sql
+
     psql (9.2.18, server 9.4.5)
     WARNING: psql version 9.2, server version 9.4.
              Some psql features might not work.
@@ -57,3 +61,35 @@ When the container is up you can run the following `psql` command line:
 
 
 Now you have an interactive console to query the inspire SQL database
+
+
+4. Search a record with the uuid
+--------------------------------
+
+A list of useful commands:
+
+- ``\h`` this lists all the sql commands that you can run
+- ``\d`` this lists all the relations
+- ``\l`` this lists all the databases
+- ``\e`` this will open the editor, where you can edit the queries and save it. By doing so the query will get executed.
+- ``\?`` this shows the PSQL command prompt help
+
+
+5. Search a record with the uuid
+--------------------------------
+
+Given the uuid of a record you can obtain the record running this query:
+
+.. code-block:: sql
+
+    select * from records_metadata where id = YOUR_UUID;
+
+
+5. Search a record with the pid
+--------------------------------
+
+Given the pid of a record you can obtain the record running this query:
+
+.. code-block:: sql
+
+    select * from pidstore_pid, records_metadata where records_metadata.id = pidstore_pid.object_uuid where pidstore_pid.id = YOUR_PID_ID;
